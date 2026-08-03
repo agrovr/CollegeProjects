@@ -1,0 +1,53 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cpp:
+    name: C++ builds
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Configure Key Management System
+        run: cmake -S "Key Management System" -B build/key -DCMAKE_BUILD_TYPE=Release
+      - name: Build Key Management System
+        run: cmake --build build/key --config Release
+      - name: Smoke-test Key Management System
+        run: printf '7\n' | ./build/key/key-management "Key Management System/input_key.txt"
+      - name: Configure Virtual Pet Simulator
+        run: cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_BUILD_TYPE=Release
+      - name: Build Virtual Pet Simulator
+        run: cmake --build build/pet --config Release
+      - name: Smoke-test Virtual Pet Simulator
+        run: printf '3\n' | ./build/pet/virtual-pet
+
+  python:
+    name: Python sources
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: "Interactive Graphics/**/requirements.txt"
+      - name: Install dependencies
+        run: python -m pip install -r "Interactive Graphics/Aether Reactor/requirements.txt"
+      - name: Verify dependencies
+        run: python -c "import OpenGL, numpy, pygame"
+      - name: Compile Python sources
+        run: python -m compileall -q "Interactive Graphics"
