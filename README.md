@@ -1,4 +1,4 @@
-# Software & Graphics Portfolio
+# College Projects
 
 A curated collection of nine standalone projects spanning real-time graphics,
 interactive simulation, systems programming, and object-oriented application
