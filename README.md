@@ -34,8 +34,8 @@ design. Each project links directly to its source and supporting documentation.
 
 | Project | Technical Focus | Core Stack |
 | --- | --- | --- |
-| [Key Management System](<A Key Management System>) | File-backed key inventory with employee lookup, assignment, returns, and state export | C++, STL, file I/O |
-| [Tamagotchi Pet Game](<Tamagotchi Pet Game>) | Polymorphic virtual pets with species-specific actions, evolving state, and save/load persistence | C++, inheritance, polymorphism, file I/O |
+| [Key Management System](<Key Management System>) | File-backed key inventory with employee lookup, issuance, returns, and state export | C++, STL, file I/O |
+| [Virtual Pet Simulator](<Virtual Pet Simulator>) | Polymorphic virtual creatures with species-specific actions, evolving state, and validated persistence | C++, inheritance, polymorphism, file I/O |
 
 ## Technical Focus
 
@@ -57,9 +57,9 @@ git clone https://github.com/agrovr/CollegeProjects.git
 cd CollegeProjects
 ```
 
-Each interactive graphics directory contains its own README with dependencies,
-installation steps, launch commands, and controls. The C++ applications contain
-standalone source directories; the Tamagotchi Pet Game targets Windows.
+Each project directory contains a README with its dependencies, build or launch
+steps, and controls. The C++ applications use portable C++17 and include CMake
+build definitions.
 
 ## License
 

@@ -1,0 +1,15 @@
+[Bb]uild/
+cmake-build-*/
+*.exe
+*.o
+*.out
+*.pdb
+*.ilk
+*.pyc
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+keys_updated.txt
+output_key.txt
+*.sav
