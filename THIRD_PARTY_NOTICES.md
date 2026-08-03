@@ -22,13 +22,11 @@ from the included applications and are provided as project documentation.
 
 `Interactive Graphics/LightForge/assets/teapot.obj` is a normalized copy of a
 reference mesh originally obtained through a private University of Houston
-Canvas file distribution. The source file did not include separate license
+distribution. The source file did not include separate license
 terms. It is excluded from the repository's MIT License and should not be
 redistributed or reused independently without confirming permission from the
 original provider.
 
-Published file SHA-256:
-`EBFA673129528BB3A5363A5880D4C23CC76D3180E9A67B33673505F8A9B9754F`.
 
 ## Dependencies
 
