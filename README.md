@@ -63,6 +63,8 @@ standalone source directories; the Tamagotchi Pet Game targets Windows.
 
 ## License
 
-This repository is distributed under the
-[GNU General Public License v3.0](LICENSE) and maintained by
-[agrovr](https://github.com/agrovr).
+Original source code and documentation in this repository are available under
+the [MIT License](LICENSE). Dependencies and non-code assets may carry separate
+terms; see [Third-Party and Asset Notices](THIRD_PARTY_NOTICES.md).
+
+Maintained by [agrovr](https://github.com/agrovr).
