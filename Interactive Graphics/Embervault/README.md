@@ -76,6 +76,17 @@ The window picks the largest of 960×540 to 1920×1080 that fits your screen.
 - **Audio** (`audio.py`): ambience, footsteps and event cues, with a silent fallback if no audio
   device is available.
 
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests generate mazes from twenty seeds and check that every cell is reachable with exactly
+one route between any two cells, that the exit is the farthest cell, that the solution route is
+walkable, that the same seed builds the same maze, and that walls stop the player.
+
 ## Files
 
 ```text
@@ -85,6 +96,7 @@ graphics.py         world, lighting, HUD and minimap
 audio.py            sound loading and playback
 assets/textures/    wall, floor, lava and portal textures (project-created)
 assets/audio/       ambience and effects (project-created)
+tests/              pytest checks for maze generation and collision
 media/              README banner, tour and stills
 ```
 

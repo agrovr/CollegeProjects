@@ -101,7 +101,7 @@ Every project README lists its controls and options.
 ## Repository layout
 
 ```text
-Interactive Graphics/<project>/   main.py, modules, shaders/, assets/, requirements.txt, media/
+Interactive Graphics/<project>/   main.py, modules, shaders/, assets/, tests/, media/
 Key Management System/            src/core, src/ui, tests/, examples/, CMakeLists.txt, media/
 Virtual Pet Simulator/            src/core, src/ui, tests/, CMakeLists.txt, media/
 tools/render_tour.py              runs a graphics project headlessly with scripted input
@@ -117,7 +117,8 @@ On every push and pull request, [Validate](.github/workflows/validate.yml):
 - builds both C++ projects with warnings as errors, runs their unit tests, and drives a session
   through each one's plain menu;
 - builds and tests both C++ projects again on **Windows and macOS**;
-- compiles every Python source; and
+- compiles every Python source and runs each graphics project's **pytest suite** (the geometry,
+  physics, orbits, maze and mesh code behind the visuals); and
 - **launches all seven graphics projects headlessly**, drives them with scripted input for a few
   seconds, and checks that each one actually rendered a frame.
 

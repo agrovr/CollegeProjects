@@ -21,8 +21,21 @@ BODIES = (
 )
 
 
+def eccentric_anomaly(mean_anomaly, eccentricity, iterations=8):
+    """Solve Kepler's equation M = E - e sin E for E with Newton's method."""
+    mean_anomaly = math.fmod(mean_anomaly, math.tau)
+    estimate = mean_anomaly if eccentricity < 0.8 else math.pi
+    for _ in range(iterations):
+        estimate -= (estimate - eccentricity * math.sin(estimate) - mean_anomaly) / (
+            1.0 - eccentricity * math.cos(estimate))
+    return estimate
+
+
 def orbital_position(body, elapsed_days, orbit_scale=6.0):
-    angle = math.tau * elapsed_days / body.period_days
+    # Mean anomaly grows evenly with time; solving Kepler's equation turns it into the
+    # eccentric anomaly, so each planet speeds up near the Sun and slows down far from it.
+    mean_anomaly = math.tau * elapsed_days / body.period_days
+    angle = eccentric_anomaly(mean_anomaly, body.eccentricity)
     semi_major = body.orbit_au * orbit_scale
     semi_minor = semi_major * math.sqrt(1.0 - body.eccentricity ** 2)
     distance_offset = semi_major * body.eccentricity

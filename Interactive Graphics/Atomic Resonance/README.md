@@ -80,11 +80,23 @@ Shell paths are an educational Bohr-model picture, not real electron trajectorie
 element uses one representative visible line rather than its full spectrum. The point is to
 connect a transition to a color you can see and an energy you can compute.
 
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests check shell filling, neutral atoms and charge states, isotopes changing only the
+neutron count, photon energy as hc/λ, the visible-light color mapping, the nucleus layout and the
+excite-and-emit sequence.
+
 ## Files
 
 ```text
 main.py          rendering, HUD, camera and input
 simulation.py    elements, isotopes, shell filling, emission timing, wavelength to color
+tests/           pytest checks for the atomic model
 media/           README banner, tour and stills
 ```
 

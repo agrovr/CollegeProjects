@@ -70,6 +70,17 @@ python main.py
 4. **Settle.** After four impacts with almost no motion left (or five seconds), the face whose
    normal points most nearly up is snapped exactly upright, and its number is the result.
 
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests throw every die from ten seeds and check that it settles flat with the reported face
+facing up, that a seed always gives the same result, that quaternions rotate correctly, and that
+opposite faces add up to one more than the number of sides.
+
 ## Files
 
 ```text
@@ -77,6 +88,7 @@ main.py         rendering, tray, HUD, history and input
 physics.py      quaternions, throw, bounce and settle
 geometry.py     the five solids, face normals and orientation
 assets/         number texture atlas (project-created)
+tests/          pytest checks for the physics and numbering
 media/          README banner, tour and stills
 ```
 

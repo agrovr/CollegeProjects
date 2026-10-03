@@ -3,7 +3,7 @@
 <p align="center"><code>PYTHON</code> · <code>PYGAME</code> · <code>PYOPENGL</code></p>
 
 A mechanical orrery for the inner solar system, rendered in real time. Mercury, Venus, Earth and
-Mars travel tilted, elliptical paths at their true relative periods, the Moon circles Earth every
+Mars travel tilted, elliptical Kepler orbits at their true relative periods, the Moon circles Earth every
 27.3 days, and the camera can sit back and watch the whole system or ride along with any planet.
 
 <p align="center"><img src="media/tour.webp" alt="The camera moves from the whole inner system to Earth with its Moon, then to Mars" width="100%"></p>
@@ -71,23 +71,33 @@ python main.py
 
 ## How it works
 
-- **Orbits** (`simulation.py`): each planet's angle advances in proportion to elapsed days over
-  its period. Its position sits on an ellipse built from the semi-major axis and eccentricity,
-  offset so the Sun is at a focus, then tilted by the orbit's inclination.
+- **Orbits** (`simulation.py`): each planet's mean anomaly grows evenly with time over its period.
+  Newton's method solves Kepler's equation, *M = E − e sin E*, for the eccentric anomaly, which
+  places the planet on an ellipse with the Sun at one focus, tilted by the orbit's inclination.
+  The result obeys Kepler's second law: Mercury moves about 1.5× faster at perihelion than at
+  aphelion.
 - **The Moon** is positioned relative to Earth's current position, so it follows Earth around the
   Sun while making its own 27.3-day loop.
 - **The camera** eases toward the focused body each frame, so switching targets glides rather
   than jumps.
 
-> [!NOTE]
-> Planets move at a steady angular rate around their ellipses. A true Keplerian orbit speeds up
-> near the Sun; that refinement is left out to keep the model readable.
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests check that each orbit returns to its start after one period, stays between perihelion
+and aphelion distance, speeds up near the Sun by the ratio Kepler's laws predict, and keeps the
+Moon at a fixed distance from Earth.
 
 ## Files
 
 ```text
 main.py          rendering, cameras, trails, HUD and input
-simulation.py    orbital elements and positions
+simulation.py    orbital elements, Kepler's equation and positions
+tests/           pytest checks for the orbital model
 media/           README banner, tour and stills
 ```
 

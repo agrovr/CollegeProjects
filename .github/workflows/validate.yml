@@ -101,6 +101,19 @@ jobs:
         run: python -m pip install -r "Interactive Graphics/Aether Reactor/requirements.txt" pillow
       - name: Compile Python sources
         run: python -m compileall -q "Interactive Graphics" tools
+      - name: Run project tests
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: |
+          python -m pip install pytest
+          status=0
+          for project in "Interactive Graphics"/*/; do
+            echo "::group::$project"
+            (cd "$project" && python -m pytest -q tests) || status=1
+            echo "::endgroup::"
+          done
+          exit $status
       - name: Launch every project headlessly
         env:
           SDL_VIDEODRIVER: offscreen

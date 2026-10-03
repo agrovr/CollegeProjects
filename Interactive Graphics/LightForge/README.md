@@ -75,6 +75,17 @@ python main.py
   each vertex and interpolates, the normal view maps direction to RGB, and toon quantizes diffuse
   light into four steps with no specular.
 
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests load the teapot (3,242 vertices, 6,320 triangles), check that polygons are split into
+fans, that face normals follow the winding order, and that vertex normals average the faces
+around them.
+
 ## Files
 
 ```text
@@ -82,6 +93,7 @@ main.py            app, camera, lights, overlays and HUD
 mesh.py            OBJ loading, face and vertex normals
 shaders/mesh.*     vertex and fragment shaders
 assets/teapot.obj  reference mesh (see the note below)
+tests/             pytest checks for OBJ loading
 media/             README banner, tour and stills
 ```
 
