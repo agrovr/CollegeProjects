@@ -25,6 +25,8 @@ jobs:
         run: cmake -S "Key Management System" -B build/key -DCMAKE_BUILD_TYPE=Release -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
       - name: Build Key Management System
         run: cmake --build build/key --config Release
+      - name: Test Key Management System
+        run: ctest --test-dir build/key --output-on-failure
       - name: Smoke-test Key Management System
         run: |
           cp "Key Management System/input_key.txt" registry.txt
@@ -32,6 +34,7 @@ jobs:
           grep -q "Holders of AHC200: Ya Hoo, Michael Lee" key.log
           grep -q "Key issued." key.log
           grep -q "3 AHC303 AHC200 AHC111" saved.txt
+          printf '1\n7\n' | ./build/key/key-management "Key Management System/examples/office.keys" | grep -q "Hana Sato: AHC102, ROOF2, GYM4"
       - name: Configure Virtual Pet Simulator
         run: cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_BUILD_TYPE=Release -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
       - name: Build Virtual Pet Simulator
@@ -68,6 +71,16 @@ jobs:
             exit 1
           fi
           ctest --test-dir build/pet -C Release --output-on-failure
+      - name: Build and test Key Management System
+        shell: bash
+        run: |
+          cmake -S "Key Management System" -B build/key -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+          if ! cmake --build build/key --config Release > build-key.log 2>&1; then
+            cat build-key.log
+            grep -E "(error|warning) [A-Z]*[0-9]+|error:|warning:" build-key.log | sort -u | head -25 | sed 's/^/::error title=Build::/'
+            exit 1
+          fi
+          ctest --test-dir build/key -C Release --output-on-failure
 
   python:
     name: Graphics projects

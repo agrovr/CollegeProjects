@@ -1,0 +1,29 @@
+KEY_REGISTRY_V2
+# An example office cabinet. Open it with: key-management examples/office.keys
+
+[keys]
+AHC102 | Server room
+AHC111 | Supply closet
+AHC200 | Lab A
+AHC303 | Loading dock
+LIB01 | Library annex
+ROOF2 | Roof access
+VAN7 | Fleet van 7
+SAFE1 | Safe
+MAIL3 | Mail room
+GYM4 | Fitness room
+
+[employees]
+Ya Hoo | AHC102 AHC200 AHC111
+Michael Lee | AHC303 AHC200
+Priya Nair | LIB01 MAIL3
+Diego Alvarez | VAN7
+Hana Sato | AHC102 ROOF2 GYM4
+Tom Becker |
+
+[history]
+2026-09-28 08:15 | issue | Hana Sato | ROOF2
+2026-09-29 13:40 | add-employee | Tom Becker |
+2026-09-30 09:05 | issue | Diego Alvarez | VAN7
+2026-10-01 11:20 | return | Priya Nair | SAFE1
+2026-10-01 16:45 | issue | Priya Nair | MAIL3
