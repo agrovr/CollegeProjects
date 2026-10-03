@@ -36,14 +36,38 @@ jobs:
         run: cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_BUILD_TYPE=Release -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
       - name: Build Virtual Pet Simulator
         run: cmake --build build/pet --config Release
+      - name: Test Virtual Pet Simulator
+        run: ctest --test-dir build/pet --output-on-failure
       - name: Smoke-test Virtual Pet Simulator
         run: |
-          printf '1\n1\nEmber\n6\n2\n8\nember.sav\n9\n2\nember.sav\n1\n9\n3\n' | ./build/pet/virtual-pet | tee pet.log
+          printf '1\n1\nEmber\n6\n2\n8\nember.sav\n9\n2\nember.sav\n1\n9\n3\n' | ./build/pet/virtual-pet --seed 1 | tee pet.log
           grep -q "Ember shapes a precise ribbon of flame." pet.log
           grep -q "Pet saved to ember.sav." pet.log
           grep -q "Pet loaded successfully." pet.log
           grep -q "Ember the Dragon" pet.log
-          head -1 ember.sav | grep -q "VIRTUAL_PET_SAVE_V1"
+          head -1 ember.sav | grep -q "VIRTUAL_PET_SAVE_V2"
+
+  cpp-portability:
+    name: C++ on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build and test Virtual Pet Simulator
+        shell: bash
+        run: |
+          cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+          # Compiler diagnostics become annotations, so they show on the pull request.
+          if ! cmake --build build/pet --config Release > build-pet.log 2>&1; then
+            cat build-pet.log
+            grep -E "(error|warning) [A-Z]*[0-9]+|error:|warning:" build-pet.log | sort -u | head -25 | sed 's/^/::error title=Build::/'
+            exit 1
+          fi
+          ctest --test-dir build/pet -C Release --output-on-failure
 
   python:
     name: Graphics projects

@@ -1,0 +1,8 @@
+{
+  "name": "collegeprojects-terminal-capture",
+  "private": true,
+  "description": "xterm.js, used by render_terminal.py to draw console recordings",
+  "dependencies": {
+    "@xterm/xterm": "^5.5.0"
+  }
+}
