@@ -20,34 +20,64 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Configure Key Management System
-        run: cmake -S "Key Management System" -B build/key -DCMAKE_BUILD_TYPE=Release
+        run: cmake -S "Key Management System" -B build/key -DCMAKE_BUILD_TYPE=Release -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
       - name: Build Key Management System
         run: cmake --build build/key --config Release
       - name: Smoke-test Key Management System
-        run: printf '7\n' | ./build/key/key-management "Key Management System/input_key.txt"
+        run: |
+          cp "Key Management System/input_key.txt" registry.txt
+          printf '3\nAHC200\n4\nMichael Lee\nAHC111\n6\nsaved.txt\n7\n' | ./build/key/key-management registry.txt | tee key.log
+          grep -q "Holders of AHC200: Ya Hoo, Michael Lee" key.log
+          grep -q "Key issued." key.log
+          grep -q "3 AHC303 AHC200 AHC111" saved.txt
       - name: Configure Virtual Pet Simulator
-        run: cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_BUILD_TYPE=Release
+        run: cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_BUILD_TYPE=Release -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
       - name: Build Virtual Pet Simulator
         run: cmake --build build/pet --config Release
       - name: Smoke-test Virtual Pet Simulator
-        run: printf '3\n' | ./build/pet/virtual-pet
+        run: |
+          printf '1\n1\nEmber\n6\n2\n8\nember.sav\n9\n2\nember.sav\n1\n9\n3\n' | ./build/pet/virtual-pet | tee pet.log
+          grep -q "Ember shapes a precise ribbon of flame." pet.log
+          grep -q "Pet saved to ember.sav." pet.log
+          grep -q "Pet loaded successfully." pet.log
+          grep -q "Ember the Dragon" pet.log
+          head -1 ember.sav | grep -q "VIRTUAL_PET_SAVE_V1"
 
   python:
-    name: Python sources
+    name: Graphics projects
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-python@v7.0.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: "Interactive Graphics/**/requirements.txt"
+      - name: Install Mesa (software OpenGL)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends libgl1-mesa-dri libegl1 libegl-mesa0 libglu1-mesa
       - name: Install dependencies
-        run: python -m pip install -r "Interactive Graphics/Aether Reactor/requirements.txt"
-      - name: Verify dependencies
-        run: python -c "import OpenGL, numpy, pygame"
+        run: python -m pip install -r "Interactive Graphics/Aether Reactor/requirements.txt" pillow
       - name: Compile Python sources
-        run: python -m compileall -q "Interactive Graphics"
+        run: python -m compileall -q "Interactive Graphics" tools
+      - name: Launch every project headlessly
+        env:
+          SDL_VIDEODRIVER: offscreen
+          SDL_AUDIODRIVER: dummy
+        run: |
+          status=0
+          for project in "Interactive Graphics"/*/; do
+            python tools/render_tour.py "$project" --smoke -o "smoke/$(basename "$project")" || status=1
+          done
+          exit $status
+      - name: Upload smoke frames
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: smoke-frames
+          path: smoke/
+          retention-days: 7

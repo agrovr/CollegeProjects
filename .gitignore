@@ -13,3 +13,4 @@ venv/
 keys_updated.txt
 output_key.txt
 *.sav
+tour-output/

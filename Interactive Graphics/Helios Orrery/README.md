@@ -1,38 +1,94 @@
-# Helios Orrery
+<img src="media/banner.jpg" alt="Helios Orrery: the Sun and inner planets on faint orbit rings, set in brass serif type on deep space" width="100%">
 
-A real-time inner-solar-system visualization driven by hierarchical transforms
-and orbital-period ratios. Cameras can follow individual bodies while the Moon
-remains correctly positioned relative to Earth.
+<p align="center"><code>PYTHON</code> · <code>PYGAME</code> · <code>PYOPENGL</code></p>
 
-![Helios Orrery](screenshots/preview.png)
+A mechanical orrery for the inner solar system, rendered in real time. Mercury, Venus, Earth and
+Mars travel tilted, elliptical paths at their true relative periods, the Moon circles Earth every
+27.3 days, and the camera can sit back and watch the whole system or ride along with any planet.
+
+<p align="center"><img src="media/tour.webp" alt="The camera moves from the whole inner system to Earth with its Moon, then to Mars" width="100%"></p>
+
+<table>
+  <tr>
+    <td width="33%"><img src="media/sun.jpg" alt="The whole inner system around the Sun"><br><sub><b>1 · Sun</b> · the whole system</sub></td>
+    <td width="33%"><img src="media/earth.jpg" alt="Earth and the Moon close up, the Sun behind"><br><sub><b>4 · Earth</b> · with the Moon</sub></td>
+    <td width="33%"><img src="media/mars.jpg" alt="Mars close up against the star field"><br><sub><b>5 · Mars</b> · the outermost body</sub></td>
+  </tr>
+</table>
+
+## The bodies
+
+| Body | Orbit (AU) | Period (days) | Eccentricity | Inclination |
+| :-- | --: | --: | --: | --: |
+| Mercury | 0.39 | 87.97 | 0.206 | 7.00° |
+| Venus | 0.72 | 224.70 | 0.007 | 3.39° |
+| Earth | 1.00 | 365.26 | 0.017 | 0.00° |
+| Mars | 1.50 | 686.98 | 0.093 | 1.85° |
+| Moon | around Earth | 27.3 | | |
 
 ## Features
 
-- Mercury, Venus, Earth, Moon, and Mars with inclined elliptical paths
-- Whole-system and tracked-body camera modes
-- Diagram and relative-size views
-- Adjustable time scale, trails, orbit guides, and deterministic star field
+- Whole-system and follow-a-body cameras, with smooth transitions between them
+- A diagram view for readability and a relative-size view for planet scale
+- Adjustable time, from 1 to 1,200 days per second, plus pause
+- Orbit guides, motion trails and a deterministic star field
 
 ## Run
 
-```powershell
+```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
 python main.py
 ```
 
 ## Controls
 
 | Input | Action |
-| --- | --- |
-| `1`–`5` | Focus a celestial body |
+| :-- | :-- |
+| <kbd>1</kbd>–<kbd>5</kbd> | Focus the Sun, Mercury, Venus, Earth or Mars |
 | Mouse drag / wheel | Orbit / zoom |
-| `+` / `-` | Change simulation speed |
-| `Space` | Pause motion |
-| `M` | Toggle the scale model |
-| `O` / `T` | Toggle orbit guides / trails |
-| `Tab` | Toggle the interface |
-| `P` | Save an image |
-| `F11` | Toggle fullscreen |
-| `Esc` | Quit |
+| <kbd>+</kbd> / <kbd>-</kbd> | Speed time up / slow it down |
+| <kbd>Space</kbd> | Pause |
+| <kbd>M</kbd> | Switch between diagram and relative sizes |
+| <kbd>O</kbd> / <kbd>T</kbd> | Toggle orbit guides / trails |
+| <kbd>0</kbd> | Reset the camera |
+| <kbd>Tab</kbd> | Toggle the interface |
+| <kbd>P</kbd> | Save an image |
+| <kbd>F11</kbd> / <kbd>Esc</kbd> | Fullscreen / quit |
+
+<details>
+<summary><b>Launch options</b></summary>
+<br>
+
+| Variable | Effect |
+| :-- | :-- |
+| `PORTFOLIO_SIZE` | Window size, for example `1600x900` |
+| `PORTFOLIO_FULLSCREEN=1` | Start fullscreen |
+| `ORRERY_CAPTURE`, `ORRERY_CAPTURE_FRAME` | Save an image to a path at a given frame, then quit |
+
+</details>
+
+## How it works
+
+- **Orbits** (`simulation.py`): each planet's angle advances in proportion to elapsed days over
+  its period. Its position sits on an ellipse built from the semi-major axis and eccentricity,
+  offset so the Sun is at a focus, then tilted by the orbit's inclination.
+- **The Moon** is positioned relative to Earth's current position, so it follows Earth around the
+  Sun while making its own 27.3-day loop.
+- **The camera** eases toward the focused body each frame, so switching targets glides rather
+  than jumps.
+
+> [!NOTE]
+> Planets move at a steady angular rate around their ellipses. A true Keplerian orbit speeds up
+> near the Sun; that refinement is left out to keep the model readable.
+
+## Files
+
+```text
+main.py          rendering, cameras, trails, HUD and input
+simulation.py    orbital elements and positions
+media/           README banner, tour and stills
+```
+
+<sub>[← All projects](../../README.md) · Media regenerated with [`tools/render_tour.py`](../../tools/render_tour.py)</sub>

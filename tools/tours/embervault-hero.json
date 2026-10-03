@@ -1,0 +1,36 @@
+{
+ "size": [
+  1920,
+  1080
+ ],
+ "fps": 30,
+ "frames": 2400,
+ "events": {
+  "30": [
+   [
+    "key",
+    "return"
+   ]
+  ],
+  "31": [
+   [
+    "keyup",
+    "return"
+   ]
+  ]
+ },
+ "shots": {
+  "660": "crystal",
+  "1920": "rift-gate",
+  "2040": "escaped"
+ },
+ "seed": 11,
+ "desktop": [
+  2560,
+  1440
+ ],
+ "autopilot": [
+  40,
+  2400
+ ]
+}
