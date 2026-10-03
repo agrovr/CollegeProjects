@@ -1,0 +1,54 @@
+{
+ "size": [
+  1920,
+  1080
+ ],
+ "fps": 30,
+ "frames": 300,
+ "events": {
+  "30": [
+   [
+    "key",
+    "return"
+   ]
+  ],
+  "31": [
+   [
+    "keyup",
+    "return"
+   ]
+  ],
+  "250": [
+   [
+    "key",
+    "q"
+   ]
+  ],
+  "251": [
+   [
+    "keyup",
+    "q"
+   ]
+  ]
+ },
+ "shots": {
+  "25": "briefing",
+  "120": "corridor",
+  "280": "phoenix-sight"
+ },
+ "seed": 11,
+ "clip": [
+  60,
+  240,
+  "tour",
+  2
+ ],
+ "desktop": [
+  2560,
+  1440
+ ],
+ "autopilot": [
+  40,
+  300
+ ]
+}

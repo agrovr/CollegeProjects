@@ -13,10 +13,12 @@ in them.
 | --- | --- |
 | Aether Reactor | `assets/fountain_texture.png` |
 | Crystal Dice Foundry | `assets/dice_numbers_crystal.png` |
-| Embervault | `forge_floor.png`, `lava.png`, `obsidian_wall.png`, `portal.png`, and the included WAV effects |
+| Embervault | `assets/textures/` (`forge_floor.png`, `lava.png`, `obsidian_wall.png`, `portal.png`) and the WAV effects in `assets/audio/` |
 
-Screenshots under each project's `screenshots` directory are captures rendered
-from the included applications and are provided as project documentation.
+Images and animations under each project's `media` directory, and the artwork in
+`docs/brand/art`, are captures rendered from the included applications (with
+`tools/render_tour.py`) or banners composed from those captures, and are provided
+as project documentation.
 
 ## Excluded Reference Mesh
 
@@ -26,7 +28,6 @@ distribution. The source file did not include separate license
 terms. It is excluded from the repository's MIT License and should not be
 redistributed or reused independently without confirming permission from the
 original provider.
-
 
 ## Dependencies
 

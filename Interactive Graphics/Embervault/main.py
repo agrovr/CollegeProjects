@@ -90,7 +90,7 @@ def recreate_display(width, height, fullscreen, folder, textures):
         "Embervault: The Shifting Forge"
     )
     graphics.initialize_opengl()
-    textures = graphics.load_textures(folder)
+    textures = graphics.load_textures(os.path.join(folder, "textures"))
     pygame.event.set_grab(True)
     pygame.mouse.set_visible(False)
     pygame.mouse.get_rel()
@@ -439,9 +439,9 @@ def main():
     )
 
     graphics.initialize_opengl()
-    folder = os.path.dirname(os.path.abspath(__file__))
-    textures = graphics.load_textures(folder)
-    audio_data = audio.initialize(folder)
+    folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
+    textures = graphics.load_textures(os.path.join(folder, "textures"))
+    audio_data = audio.initialize(os.path.join(folder, "audio"))
 
     pygame.event.set_grab(True)
     pygame.mouse.set_visible(False)

@@ -1,0 +1,327 @@
+<!doctype html>
+<!--
+  Source for every README banner in this repository. Each project has its own identity.
+  Open with ?p=<key> and screenshot #card at 2x (1280 x 400):
+    collection  aether  atomic  dice  embervault  helios  lightforge  atlas  keys  pet
+  Art in docs/brand/art/ comes from tools/render_tour.py captures of the real applications.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CollegeProjects banners</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;500;700&family=Chakra+Petch:wght@400;600;700&family=Spectral:ital,wght@0,300;0,500;1,300&family=IBM+Plex+Mono:wght@400;500&family=Cinzel:wght@500;700;900&family=Grenze+Gotisch:wght@500;700;900&family=Courier+Prime:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Space+Grotesk:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@500;700&family=Fredoka:wght@400;500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #777; }
+  #card { position: relative; overflow: hidden; width: 1280px; height: 400px; }
+  .v { display: none; position: absolute; inset: 0; }
+  .art { position: absolute; top: 0; right: 0; height: 100%; object-fit: cover; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* ---------- collection: an index card catalogue ---------- */
+  #collection { background: #f3efe6; color: #16161a; font-family: 'Bricolage Grotesque', sans-serif; }
+  #collection .copy { position: absolute; left: 60px; top: 54px; width: 470px; }
+  #collection .kicker { font: 500 13px/1 'JetBrains Mono', monospace; letter-spacing: 0.16em; text-transform: uppercase; color: #6b6458; }
+  #collection h1 { margin-top: 18px; font-size: 76px; line-height: 0.92; font-weight: 800; letter-spacing: -0.035em; font-variation-settings: "opsz" 96; }
+  #collection h1 span { display: block; font-weight: 400; color: #6b6458; }
+  #collection p { margin-top: 20px; font-size: 18.5px; line-height: 1.45; color: #3c3a36; }
+  #collection .count { position: absolute; left: 60px; bottom: 40px; font: 500 13px/1 'JetBrains Mono', monospace; color: #6b6458; letter-spacing: 0.06em; }
+  #collection .count b { color: #16161a; }
+  #collection .grid { position: absolute; right: 40px; top: 30px; display: grid; grid-template-columns: repeat(3, 210px); grid-auto-rows: 106px; gap: 9px; }
+  #collection .tile { position: relative; border-radius: 10px; overflow: hidden; background: #111; }
+  #collection .tile img { width: 100%; height: 100%; object-fit: cover; }
+  #collection .tile span { position: absolute; left: 8px; bottom: 7px; padding: 3px 7px; border-radius: 5px; background: rgba(10, 10, 12, 0.72); color: #f3efe6; font: 500 10.5px/1.2 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+  #collection .term { padding: 12px; font: 400 10.5px/1.45 'JetBrains Mono', monospace; color: #d6d2c8; white-space: pre; }
+  #collection .term.keys { background: #1d2024; } #collection .term.pet { background: #2a1f3d; color: #f5e9ff; }
+
+  /* ---------- Aether Reactor: neon containment lab ---------- */
+  #aether { background: radial-gradient(700px 400px at 78% 40%, #0d1630, #03050b 70%); color: #e6faff; font-family: 'Chakra Petch', sans-serif; }
+  #aether .art { width: 760px; mask-image: linear-gradient(90deg, transparent, #000 32%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 32%); }
+  #aether .copy { position: absolute; left: 60px; top: 58px; width: 560px; }
+  #aether .k { font: 600 13px/1 'Chakra Petch', sans-serif; letter-spacing: 0.32em; color: #53f2ff; }
+  #aether h1 { margin-top: 16px; font-size: 78px; line-height: 0.95; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; text-shadow: 0 0 28px rgba(83, 242, 255, 0.35); }
+  #aether h1 b { color: #ff4fd8; text-shadow: 0 0 28px rgba(255, 79, 216, 0.45); font-weight: 700; }
+  #aether p { margin-top: 18px; font: 400 18px/1.45 'Chakra Petch', sans-serif; color: #9fc3d6; max-width: 500px; }
+  #aether .modes { position: absolute; left: 60px; bottom: 38px; display: flex; gap: 10px; }
+  #aether .modes span { padding: 7px 12px; border: 1px solid rgba(83, 242, 255, 0.35); font: 600 12px/1 'Chakra Petch', sans-serif; letter-spacing: 0.18em; color: #53f2ff; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); background: rgba(83, 242, 255, 0.06); }
+  #aether .modes span:nth-child(2) { color: #ff4fd8; border-color: rgba(255, 79, 216, 0.4); }
+  #aether .modes span:nth-child(3) { color: #ffb347; border-color: rgba(255, 179, 71, 0.4); }
+  #aether .modes span:nth-child(4) { color: #ffe066; border-color: rgba(255, 224, 102, 0.4); }
+
+  /* ---------- Atomic Resonance: spectroscopy plate ---------- */
+  #atomic { background: #060a1c; color: #eef1ff; font-family: 'Spectral', serif; }
+  #atomic .art { width: 560px; right: 30px; mask-image: radial-gradient(closest-side, #000 72%, transparent); -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent); }
+  #atomic .copy { position: absolute; left: 64px; top: 56px; width: 620px; }
+  #atomic .k { font: 500 12.5px/1 'IBM Plex Mono', monospace; letter-spacing: 0.22em; color: #7fd6ff; }
+  #atomic h1 { margin-top: 18px; font-size: 76px; line-height: 0.98; font-weight: 300; letter-spacing: -0.01em; }
+  #atomic h1 i { font-weight: 300; color: #ffd27a; }
+  #atomic p { margin-top: 16px; font-size: 20px; line-height: 1.45; color: #b6bde0; max-width: 560px; font-weight: 300; }
+  #atomic .spec { position: absolute; left: 64px; bottom: 44px; width: 560px; height: 14px; border-radius: 3px; background: linear-gradient(90deg, #6a00ff, #2e4bff 14%, #00b7ff 28%, #00e08a 44%, #e8f000 58%, #ff9a00 72%, #ff2a00 88%, #8a0000); }
+  #atomic .spec i { position: absolute; top: -9px; width: 2px; height: 32px; background: #fff; box-shadow: 0 0 8px #fff; }
+  #atomic .spec-l { position: absolute; left: 64px; bottom: 18px; width: 560px; display: flex; justify-content: space-between; font: 400 11px/1 'IBM Plex Mono', monospace; color: #7c84ad; }
+
+  /* ---------- Crystal Dice Foundry: engraved brass and amethyst ---------- */
+  #dice { background: radial-gradient(520px 380px at 80% 50%, #2b1d3f, #0f0b14 72%); color: #f3e6c4; font-family: 'Cinzel', serif; }
+  #dice .art { width: 600px; right: 24px; mask-image: radial-gradient(closest-side, #000 60%, transparent); -webkit-mask-image: radial-gradient(closest-side, #000 60%, transparent); }
+  #dice .frame { position: absolute; inset: 18px; border: 1px solid rgba(214, 170, 82, 0.45); }
+  #dice .frame::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(214, 170, 82, 0.2); }
+  #dice .copy { position: absolute; left: 68px; top: 62px; width: 600px; }
+  #dice .k { font: 700 13px/1 'Cinzel', serif; letter-spacing: 0.36em; color: #d6aa52; }
+  #dice h1 { margin-top: 18px; font-size: 64px; line-height: 1.02; font-weight: 900; letter-spacing: 0.04em; background: linear-gradient(180deg, #fff3cf, #d6aa52 60%, #8c6420); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #dice p { margin-top: 16px; font: 400 18px/1.5 'EB Garamond', serif; color: #d9c9a6; max-width: 520px; }
+  #dice .dies { position: absolute; left: 68px; bottom: 44px; display: flex; gap: 10px; }
+  #dice .dies span { width: 52px; height: 30px; display: grid; place-items: center; border: 1px solid rgba(214, 170, 82, 0.5); font: 700 13px/1 'Cinzel', serif; color: #d6aa52; letter-spacing: 0.06em; background: rgba(214, 170, 82, 0.06); }
+  #dice .dies span.on { background: #d6aa52; color: #1a1220; }
+
+  /* ---------- Embervault: obsidian and lava ---------- */
+  #embervault { background: #070404; color: #ffe8d6; font-family: 'Courier Prime', monospace; }
+  #embervault .art { width: 820px; mask-image: linear-gradient(90deg, transparent, #000 40%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); filter: saturate(1.15) contrast(1.05); }
+  #embervault .glow { position: absolute; left: -120px; bottom: -160px; width: 640px; height: 380px; background: radial-gradient(closest-side, rgba(255, 90, 31, 0.32), transparent); }
+  #embervault .copy { position: absolute; left: 62px; top: 46px; width: 600px; }
+  #embervault .k { font: 700 13px/1 'Courier Prime', monospace; letter-spacing: 0.3em; color: #ff7a2f; }
+  #embervault h1 { margin-top: 12px; font: 900 104px/0.9 'Grenze Gotisch', serif; letter-spacing: 0.01em; color: #ffb36b; text-shadow: 0 0 22px rgba(255, 90, 31, 0.55), 0 2px 0 #5a1a05; }
+  #embervault .sub { margin-top: 6px; font: 700 22px/1 'Grenze Gotisch', serif; letter-spacing: 0.08em; color: #ff7a2f; }
+  #embervault p { margin-top: 18px; font-size: 16.5px; line-height: 1.5; color: #d9b9a4; max-width: 470px; }
+  #embervault .hud { position: absolute; left: 62px; bottom: 36px; display: flex; gap: 22px; padding: 10px 14px; border: 1px solid rgba(255, 122, 47, 0.55); background: rgba(10, 6, 6, 0.75); font: 700 12.5px/1 'Courier Prime', monospace; letter-spacing: 0.08em; }
+  #embervault .hud b { color: #ff7a2f; margin-right: 6px; } #embervault .hud i { font-style: normal; color: #6ff3ff; }
+
+  /* ---------- Helios Orrery: brass clockwork in deep space ---------- */
+  #helios { background: radial-gradient(600px 420px at 76% 50%, #121018, #050407 72%); color: #f1e6cf; font-family: 'Cormorant Garamond', serif; }
+  #helios .art { width: 640px; right: -10px; mask-image: radial-gradient(closest-side, #000 70%, transparent); -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent); }
+  #helios .ring { position: absolute; border: 1px solid rgba(212, 162, 76, 0.18); border-radius: 50%; }
+  #helios .copy { position: absolute; left: 66px; top: 56px; width: 600px; }
+  #helios .k { font: 700 14px/1 'Cormorant Garamond', serif; letter-spacing: 0.42em; text-transform: uppercase; color: #d4a24c; }
+  #helios h1 { margin-top: 14px; font-size: 92px; line-height: 0.92; font-weight: 700; letter-spacing: 0.01em; }
+  #helios h1 i { font-weight: 500; color: #d4a24c; }
+  #helios p { margin-top: 16px; font: 500 22px/1.4 'Cormorant Garamond', serif; color: #c9bda4; max-width: 520px; }
+  #helios .bodies { position: absolute; left: 66px; bottom: 42px; display: flex; gap: 18px; align-items: center; font: 700 13px/1 'Cormorant Garamond', serif; letter-spacing: 0.2em; text-transform: uppercase; color: #a89a7f; }
+  #helios .bodies i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; vertical-align: -1px; }
+
+  /* ---------- LightForge: two lights, one surface ---------- */
+  #lightforge { background: #15161b; color: #f4f4f8; font-family: 'Space Grotesk', sans-serif; }
+  #lightforge .lr { position: absolute; width: 520px; height: 520px; border-radius: 50%; filter: blur(10px); }
+  #lightforge .art { width: 620px; right: 0; mask-image: radial-gradient(closest-side, #000 66%, transparent); -webkit-mask-image: radial-gradient(closest-side, #000 66%, transparent); }
+  #lightforge .copy { position: absolute; left: 60px; top: 58px; width: 600px; }
+  #lightforge .k { font: 500 13px/1 'Space Grotesk', sans-serif; letter-spacing: 0.24em; text-transform: uppercase; color: #9aa0b8; }
+  #lightforge h1 { margin-top: 16px; font-size: 92px; line-height: 0.9; font-weight: 700; letter-spacing: -0.045em; background: linear-gradient(90deg, #ff4d6d, #b06bff 50%, #4d8bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #lightforge p { margin-top: 18px; font-size: 19px; line-height: 1.45; color: #b9bccb; max-width: 500px; }
+  #lightforge .modes { position: absolute; left: 60px; bottom: 40px; display: flex; gap: 0; border: 1px solid #353845; border-radius: 10px; overflow: hidden; }
+  #lightforge .modes span { padding: 9px 14px; font: 500 13px/1 'Space Grotesk', sans-serif; color: #9aa0b8; border-right: 1px solid #353845; }
+  #lightforge .modes span:last-child { border-right: 0; } #lightforge .modes span.on { background: #f4f4f8; color: #15161b; }
+
+  /* ---------- Polyhedral Atlas: a plate from a geometry folio ---------- */
+  #atlas { background: #e6e0d1; color: #1d1b17; font-family: 'EB Garamond', serif; }
+  #atlas .plate { position: absolute; inset: 20px; border: 1.5px solid #1d1b17; }
+  #atlas .plate::after { content: ""; position: absolute; inset: 5px; border: 0.75px solid rgba(29, 27, 23, 0.5); }
+  #atlas .art { width: 420px; height: 420px; top: -10px; right: 70px; mask-image: radial-gradient(closest-side, #000 80%, transparent); -webkit-mask-image: radial-gradient(closest-side, #000 80%, transparent); }
+  #atlas .copy { position: absolute; left: 64px; top: 52px; width: 640px; }
+  #atlas .k { font: 600 13px/1 'EB Garamond', serif; letter-spacing: 0.32em; text-transform: uppercase; color: #b4543d; }
+  #atlas h1 { margin-top: 14px; font-size: 84px; line-height: 0.95; font-weight: 400; letter-spacing: -0.01em; }
+  #atlas h1 i { color: #2b4f8f; }
+  #atlas p { margin-top: 14px; font-size: 21px; line-height: 1.4; color: #4a4539; max-width: 560px; font-style: italic; }
+  #atlas table { position: absolute; left: 64px; bottom: 40px; border-collapse: collapse; font: 400 14px/1 'EB Garamond', serif; }
+  #atlas td { padding: 5px 12px; border: 0.75px solid #8c846f; text-align: center; }
+  #atlas tr:first-child td { font-variant: small-caps; letter-spacing: 0.06em; color: #6b6452; }
+  #atlas .fig { position: absolute; right: 64px; bottom: 34px; font: italic 400 14px/1 'EB Garamond', serif; color: #6b6452; }
+
+  /* ---------- Key Management System: key cabinet and ledger ---------- */
+  #keys { background: linear-gradient(180deg, #e9ecef, #d9dde2); color: #1f2328; font-family: 'IBM Plex Sans Condensed', sans-serif; }
+  #keys .copy { position: absolute; left: 60px; top: 56px; width: 560px; }
+  #keys .k { font: 500 13px/1 'IBM Plex Mono', monospace; letter-spacing: 0.18em; color: #c8102e; }
+  #keys h1 { margin-top: 16px; font-size: 68px; line-height: 0.95; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; }
+  #keys p { margin-top: 16px; font: 500 18.5px/1.45 'IBM Plex Sans Condensed', sans-serif; color: #4b535c; max-width: 520px; }
+  #keys .board { position: absolute; right: 50px; top: 34px; width: 560px; height: 332px; border-radius: 12px; background: #2b3036; box-shadow: inset 0 0 0 6px #3a4048, 0 24px 50px -24px rgba(0, 0, 0, 0.5); padding: 34px 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 20px; }
+  #keys .hook { position: relative; display: flex; flex-direction: column; align-items: center; }
+  #keys .hook::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #9aa3ad; box-shadow: 0 1px 0 #111; }
+  #keys .tag { margin-top: 8px; width: 120px; padding: 9px 0 8px; border-radius: 6px 6px 14px 14px; background: #c8102e; color: #fff; text-align: center; font: 500 13px/1.2 'IBM Plex Mono', monospace; box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.6); }
+  #keys .tag small { display: block; margin-top: 3px; font: 500 10px/1 'IBM Plex Sans Condensed', sans-serif; letter-spacing: 0.08em; opacity: 0.85; text-transform: uppercase; }
+  #keys .tag.free { background: #f2f2f2; color: #1f2328; }
+  #keys .tag { font-size: 15px; padding: 14px 0 12px; }
+  #keys .tag.out { background: #f2b705; color: #1f2328; }
+  #keys .cli { position: absolute; left: 60px; bottom: 36px; padding: 10px 14px; border-radius: 8px; background: #1f2328; color: #d7dde4; font: 400 13px/1.5 'IBM Plex Mono', monospace; white-space: pre; }
+  #keys .cli b { color: #f2b705; font-weight: 500; }
+
+  /* ---------- Virtual Pet Simulator: a handheld pet toy ---------- */
+  #pet { background: radial-gradient(500px 360px at 18% 20%, #ffe3f1, transparent 70%), radial-gradient(520px 360px at 90% 90%, #d9f7f1, transparent 70%), #fdf6ff; color: #2d2340; font-family: 'Fredoka', sans-serif; }
+  #pet .copy { position: absolute; left: 60px; top: 56px; width: 520px; }
+  #pet .k { display: inline-block; padding: 6px 12px; border-radius: 999px; background: #2d2340; color: #fff; font: 600 12.5px/1 'Fredoka', sans-serif; letter-spacing: 0.12em; }
+  #pet h1 { margin-top: 18px; font-size: 70px; line-height: 0.95; font-weight: 700; letter-spacing: -0.01em; }
+  #pet h1 span { color: #ff5d8f; }
+  #pet p { margin-top: 16px; font: 400 19px/1.45 'Fredoka', sans-serif; color: #5b4f70; max-width: 480px; }
+  #pet .cards { position: absolute; right: 44px; top: 40px; display: flex; gap: 16px; }
+  #pet .c { width: 196px; height: 320px; border-radius: 26px; padding: 18px 16px; background: #fff; box-shadow: 0 22px 40px -22px rgba(45, 35, 64, 0.45); border: 3px solid var(--c); }
+  #pet .c:nth-child(2) { transform: translateY(14px) rotate(1.5deg); } #pet .c:nth-child(1) { transform: rotate(-2deg); }
+  #pet .c .face { height: 92px; border-radius: 18px; background: var(--soft); display: grid; place-items: center; font-size: 54px; }
+  #pet .c h3 { margin-top: 12px; font: 700 21px/1 'Fredoka', sans-serif; }
+  #pet .c h3 small { display: block; margin-top: 4px; font: 500 12px/1 'Fredoka', sans-serif; color: var(--c); letter-spacing: 0.08em; text-transform: uppercase; }
+  #pet .bar { margin-top: 9px; font: 500 11px/1 'Fredoka', sans-serif; color: #7b6f90; }
+  #pet .bar div { margin-top: 4px; height: 8px; border-radius: 99px; background: #efe9f5; overflow: hidden; }
+  #pet .bar div i { display: block; height: 100%; border-radius: 99px; background: var(--c); }
+  #pet .menu { position: absolute; left: 60px; bottom: 40px; display: flex; gap: 8px; }
+  #pet .menu span { padding: 8px 13px; border-radius: 999px; background: #fff; border: 2px solid #ece3f6; font: 600 13px/1 'Fredoka', sans-serif; color: #5b4f70; }
+</style>
+</head>
+<body>
+<div id="card">
+
+  <!-- collection -->
+  <div class="v" id="collection">
+    <div class="copy">
+      <p class="kicker">agrovr · coursework, rebuilt</p>
+      <h1>College<span>Projects</span></h1>
+      <p>Nine standalone programs: seven real-time OpenGL scenes and two C++ console applications.</p>
+    </div>
+    <p class="count"><b>7</b> Python · OpenGL &nbsp;&nbsp; <b>2</b> C++17</p>
+    <div class="grid">
+      <div class="tile"><img src="art/embervault.jpg" alt=""><span>Embervault</span></div>
+      <div class="tile"><img src="art/aether.jpg" alt=""><span>Aether Reactor</span></div>
+      <div class="tile"><img src="art/lightforge.jpg" alt="" style="object-position:50% 40%"><span>LightForge</span></div>
+      <div class="tile"><img src="art/atomic.jpg" alt=""><span>Atomic Resonance</span></div>
+      <div class="tile"><img src="art/helios.jpg" alt=""><span>Helios Orrery</span></div>
+      <div class="tile"><img src="art/dice.jpg" alt="" style="object-position:50% 45%"><span>Crystal Dice Foundry</span></div>
+      <div class="tile"><img src="art/atlas.jpg" alt=""><span>Polyhedral Atlas</span></div>
+      <div class="tile term keys">Holders of AHC200:
+  Ya Hoo, Michael Lee
+Key issued.
+Registry saved.<span>Key Management System</span></div>
+      <div class="tile term pet">Ember the Dragon
+Happiness  89/100
+Discipline 61/100
+Hunger     42/100<span>Virtual Pet Simulator</span></div>
+    </div>
+  </div>
+
+  <!-- Aether Reactor -->
+  <div class="v" id="aether">
+    <img class="art" src="art/aether.jpg" alt="">
+    <div class="copy">
+      <p class="k">PARTICLE CONTAINMENT · LIVE</p>
+      <h1>Aether<br><b>Reactor</b></h1>
+      <p>A GLSL point-sprite particle system with fountains, vortices, embers and fireworks you can tune while it runs.</p>
+    </div>
+    <div class="modes"><span>01 FOUNTAIN</span><span>02 VORTEX</span><span>03 EMBERS</span><span>04 FIREWORKS</span></div>
+  </div>
+
+  <!-- Atomic Resonance -->
+  <div class="v" id="atomic">
+    <img class="art" src="art/atomic.jpg" alt="">
+    <div class="copy">
+      <p class="k">Z = 10 · NEON · n=3 → n=2</p>
+      <h1>Atomic <i>Resonance</i></h1>
+      <p>Build an atom, excite its outer electron and watch it fall back, emitting a photon of a real wavelength.</p>
+    </div>
+    <div class="spec"><i style="left:70%"></i></div>
+    <div class="spec-l"><span>380 nm</span><span>640.2 nm · neon emission</span><span>750 nm</span></div>
+  </div>
+
+  <!-- Crystal Dice Foundry -->
+  <div class="v" id="dice">
+    <div class="frame"></div>
+    <img class="art" src="art/dice.jpg" alt="">
+    <div class="copy">
+      <p class="k">Cast · Tumble · Settle</p>
+      <h1>Crystal Dice<br>Foundry</h1>
+      <p>Polyhedral dice thrown with quaternion physics. The result is read from whichever face ends up pointing to the sky.</p>
+    </div>
+    <div class="dies"><span>D4</span><span>D6</span><span>D8</span><span>D12</span><span class="on">D20</span></div>
+  </div>
+
+  <!-- Embervault -->
+  <div class="v" id="embervault">
+    <img class="art" src="art/embervault.jpg" alt="">
+    <div class="glow"></div>
+    <div class="copy">
+      <p class="k">FIRST-PERSON · PROCEDURAL</p>
+      <h1>Embervault</h1>
+      <p class="sub">The Shifting Forge</p>
+      <p>A new 12×12 maze is forged every run. Find the cyan rift gate before the forge finds you.</p>
+    </div>
+    <div class="hud"><span><b>CELL</b>01,01</span><span><b>TIME</b>00:00.0</span><span><i>FIND THE CYAN RIFT GATE</i></span></div>
+  </div>
+
+  <!-- Helios Orrery -->
+  <div class="v" id="helios">
+    <div class="ring" style="width:900px;height:900px;right:-170px;top:-250px"></div>
+    <div class="ring" style="width:1300px;height:1300px;right:-370px;top:-450px"></div>
+    <img class="art" src="art/helios.jpg" alt="">
+    <div class="copy">
+      <p class="k">An inner-system orrery</p>
+      <h1>Helios <i>Orrery</i></h1>
+      <p>Mercury to Mars on inclined, elliptical orbits, with the Moon circling a moving Earth.</p>
+    </div>
+    <div class="bodies"><span><i style="background:#a39b8f"></i>Mercury</span><span><i style="background:#d9b26f"></i>Venus</span><span><i style="background:#3f73c7"></i>Earth</span><span><i style="background:#c4c4c4"></i>Moon</span><span><i style="background:#c1502e"></i>Mars</span></div>
+  </div>
+
+  <!-- LightForge -->
+  <div class="v" id="lightforge">
+    <div class="lr" style="background:radial-gradient(closest-side,rgba(255,77,109,.35),transparent);right:300px;top:-180px"></div>
+    <div class="lr" style="background:radial-gradient(closest-side,rgba(77,139,255,.35),transparent);right:-120px;top:60px"></div>
+    <img class="art" src="art/lightforge.jpg" alt="">
+    <div class="copy">
+      <p class="k">Normals · lights · shaders</p>
+      <h1>LightForge</h1>
+      <p>One teapot, two moving lights and five ways to shade it, from flat faces to toon bands.</p>
+    </div>
+    <div class="modes"><span>Flat</span><span>Gouraud</span><span class="on">Phong</span><span>Normals</span><span>Toon</span></div>
+  </div>
+
+  <!-- Polyhedral Atlas -->
+  <div class="v" id="atlas">
+    <div class="plate"></div>
+    <img class="art" src="art/atlas.jpg" alt="">
+    <div class="copy">
+      <p class="k">Plate V · The Platonic Solids</p>
+      <h1>Polyhedral <i>Atlas</i></h1>
+      <p>Five regular solids, their duals and the numbers that bind them.</p>
+    </div>
+    <table>
+      <tr><td>solid</td><td>V</td><td>E</td><td>F</td><td>V − E + F</td></tr>
+      <tr><td>Icosahedron</td><td>12</td><td>30</td><td>20</td><td>2</td></tr>
+    </table>
+    <p class="fig">Fig. 5 — icosahedron with its dual</p>
+  </div>
+
+  <!-- Key Management System -->
+  <div class="v" id="keys">
+    <div class="copy">
+      <p class="k">C++17 · FILE-BACKED REGISTRY</p>
+      <h1>Key Management<br>System</h1>
+      <p>Track which physical keys are out and who holds them, then issue, return and save, all from a plain text registry.</p>
+    </div>
+    <div class="cli"><b>&gt;</b> 3  Find holders of a key
+  Holders of AHC200: Ya Hoo, Michael Lee</div>
+    <div class="board">
+      <div class="hook"><div class="tag">AHC102<small>returned</small></div></div>
+      <div class="hook"><div class="tag out">AHC200<small>Ya Hoo</small></div></div>
+      <div class="hook"><div class="tag out">AHC111<small>Ya Hoo</small></div></div>
+      <div class="hook"><div class="tag out">AHC303<small>M. Lee</small></div></div>
+      <div class="hook"><div class="tag out">AHC200<small>M. Lee</small></div></div>
+      <div class="hook"><div class="tag out">AHC111<small>M. Lee</small></div></div>
+    </div>
+  </div>
+
+  <!-- Virtual Pet Simulator -->
+  <div class="v" id="pet">
+    <div class="copy">
+      <p class="k">C++17 · CONSOLE GAME</p>
+      <h1>Virtual Pet<br><span>Simulator</span></h1>
+      <p>Raise a Dragon, a Unicorn or a Mystic Cat. Feed, rest, play and train, and watch six stats react.</p>
+    </div>
+    <div class="menu"><span>Feed</span><span>Rest</span><span>Play</span><span>Train</span><span>Save</span></div>
+    <div class="cards">
+      <div class="c" style="--c:#ff6b4a;--soft:#ffe7df"><div class="face">🐉</div><h3>Ember<small>Dragon</small></h3>
+        <div class="bar">Happiness<div><i style="width:89%"></i></div></div><div class="bar">Discipline<div><i style="width:61%"></i></div></div><div class="bar">Hunger<div><i style="width:42%"></i></div></div></div>
+      <div class="c" style="--c:#a774ff;--soft:#f0e6ff"><div class="face">🦄</div><h3>Luna<small>Unicorn</small></h3>
+        <div class="bar">Happiness<div><i style="width:86%"></i></div></div><div class="bar">Discipline<div><i style="width:55%"></i></div></div><div class="bar">Hunger<div><i style="width:51%"></i></div></div></div>
+      <div class="c" style="--c:#19b8a6;--soft:#dcf7f3"><div class="face">🐈</div><h3>Miso<small>Mystic Cat</small></h3>
+        <div class="bar">Happiness<div><i style="width:88%"></i></div></div><div class="bar">Discipline<div><i style="width:64%"></i></div></div><div class="bar">Hunger<div><i style="width:56%"></i></div></div></div>
+    </div>
+  </div>
+
+</div>
+<script>
+  const p = new URLSearchParams(location.search).get('p') || 'collection';
+  document.getElementById(p).style.display = 'block';
+</script>
+</body>
+</html>
