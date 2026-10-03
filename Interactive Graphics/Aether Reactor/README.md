@@ -68,12 +68,24 @@ Needs Python 3.10 or newer and an OpenGL 2.1 capable GPU or driver.
   radial falloff, blended additively so overlapping particles brighten.
 - **Color** comes from mixing a mode's start and end colors by the particle's age.
 
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests run every mode at a high spawn rate and check that the particle count never passes
+the 4,000 cap, that particles age within their lifetime, and that clearing empties the reactor.
+They import `main.py`, so they need the project's requirements installed.
+
 ## Files
 
 ```text
 main.py                 simulation, renderer, HUD and input
 shaders/particle.*      point-sprite vertex and fragment shaders
 assets/                 reactor texture (project-created)
+tests/                  pytest checks for the particle system
 media/                  README banner, tour and stills
 ```
 

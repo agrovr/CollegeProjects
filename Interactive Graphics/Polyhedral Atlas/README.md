@@ -82,11 +82,23 @@ python main.py
 - **Numbers**: V, E and F are counted from the mesh itself, so the Euler characteristic on the
   panel is computed, not typed in.
 
+## Tests
+
+```bash
+pip install pytest
+python -m pytest tests
+```
+
+The tests check vertex, edge and face counts, Euler's formula, that every vertex sits on the unit
+sphere, that every edge has the same length, that face normals point outward, and that each dual
+has the counts of its partner solid.
+
 ## Files
 
 ```text
 main.py        rendering, panel, camera and input
 geometry.py    solids, normals, edges and duals
+tests/         pytest checks for the solids
 media/         README banner, tour and stills
 ```
 
