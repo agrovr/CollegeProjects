@@ -47,12 +47,12 @@ and its own way in. Pick a card.
 ### C++ applications
 
 <a href="Key%20Management%20System/README.md"><img src="Key%20Management%20System/media/banner.jpg" alt="Key Management System" width="100%"></a>
-**[Key Management System](<Key Management System/README.md>)** · a command-line key cabinet with a validated, file-backed registry.
-<br><sub>C++17 · STL · file I/O · CMake</sub>
+**[Key Management System](<Key Management System/README.md>)** · a full-screen key cabinet: amber tags out, steel tags on the hook, with labels, history and two file formats.
+<br><sub>C++17 · terminal UI · file I/O · CMake · CTest</sub>
 
 <a href="Virtual%20Pet%20Simulator/README.md"><img src="Virtual%20Pet%20Simulator/media/banner.jpg" alt="Virtual Pet Simulator" width="100%"></a>
-**[Virtual Pet Simulator](<Virtual Pet Simulator/README.md>)** · raise a Dragon, Unicorn or Mystic Cat, with polymorphic species and versioned saves.
-<br><sub>C++17 · inheritance · polymorphism · file I/O · CMake</sub>
+**[Virtual Pet Simulator](<Virtual Pet Simulator/README.md>)** · an animated terminal pet: hatch a Dragon, Unicorn or Mystic Cat and raise it through day, night and three life stages.
+<br><sub>C++17 · terminal UI · polymorphism · CMake · CTest</sub>
 
 ## At a glance
 
@@ -65,8 +65,8 @@ and its own way in. Pick a card.
 | [Helios Orrery](<Interactive Graphics/Helios Orrery/README.md>) | Orbital elements, relative motion, eased follow cameras | Python, PyOpenGL |
 | [Crystal Dice Foundry](<Interactive Graphics/Crystal Dice Foundry/README.md>) | Quaternions, collision response, texture atlases | Python, PyOpenGL |
 | [Polyhedral Atlas](<Interactive Graphics/Polyhedral Atlas/README.md>) | Polyhedral topology, duals, Euler characteristic | Python, PyOpenGL |
-| [Key Management System](<Key Management System/README.md>) | Validated parsing, state management, round-trip file I/O | C++17 |
-| [Virtual Pet Simulator](<Virtual Pet Simulator/README.md>) | Abstract classes, polymorphism, versioned persistence | C++17 |
+| [Key Management System](<Key Management System/README.md>) | Terminal UI, validated state changes, versioned file formats, safe saves | C++17 |
+| [Virtual Pet Simulator](<Virtual Pet Simulator/README.md>) | Terminal UI and animation, polymorphism, seeded simulation, versioned saves | C++17 |
 
 ## Getting started
 
@@ -85,7 +85,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-**A C++ project** (CMake 3.16+ and a C++17 compiler):
+**A C++ project** (CMake 3.16+ and a C++17 compiler, no other dependencies):
 
 ```bash
 cmake -S "Virtual Pet Simulator" -B build/pet
@@ -93,16 +93,20 @@ cmake --build build/pet
 ./build/pet/virtual-pet
 ```
 
+Both C++ projects open a full-screen interface in a terminal of about 100×30, and fall back to
+numbered menus when input is piped or with `--plain`.
+
 Every project README lists its controls and options.
 
 ## Repository layout
 
 ```text
 Interactive Graphics/<project>/   main.py, modules, shaders/, assets/, requirements.txt, media/
-Key Management System/            main.cpp, sample registry, CMakeLists.txt, media/
-Virtual Pet Simulator/            Pet hierarchy, Game, CMakeLists.txt, media/
+Key Management System/            src/core, src/ui, tests/, examples/, CMakeLists.txt, media/
+Virtual Pet Simulator/            src/core, src/ui, tests/, CMakeLists.txt, media/
 tools/render_tour.py              runs a graphics project headlessly with scripted input
-tools/tours/                      the scripted tours behind every screenshot and animation
+tools/tours/                      the scripted tours behind every graphics screenshot and animation
+tools/terminal/                   records the C++ apps in a pseudo-terminal and renders them
 docs/brand/                       banner sources and artwork
 ```
 
@@ -110,7 +114,9 @@ docs/brand/                       banner sources and artwork
 
 On every push and pull request, [Validate](.github/workflows/validate.yml):
 
-- builds both C++ projects with warnings enabled and runs a short session through each;
+- builds both C++ projects with warnings as errors, runs their unit tests, and drives a session
+  through each one's plain menu;
+- builds and tests both C++ projects again on **Windows and macOS**;
 - compiles every Python source; and
 - **launches all seven graphics projects headlessly**, drives them with scripted input for a few
   seconds, and checks that each one actually rendered a frame.
