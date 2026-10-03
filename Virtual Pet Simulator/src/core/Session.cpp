@@ -14,16 +14,16 @@ constexpr double eventChance = 0.14;
 constexpr int refusalDiscipline = 25;
 }
 
-Session::Session(std::unique_ptr<Pet> pet, std::uint32_t seed) : pet_(std::move(pet)), rng_(seed) {}
+Session::Session(std::unique_ptr<Pet> petToPlay, std::uint32_t seed) : pet_(std::move(petToPlay)), rng_(seed) {}
 
 Outcome Session::perform(Action action) {
-    Pet& pet = *pet_;
+    Pet& current = *pet_;
     Outcome outcome;
     outcome.action = action;
-    outcome.before = pet.stats();
-    const LifeStage stageBefore = pet.stage();
+    outcome.before = current.stats();
+    const LifeStage stageBefore = current.stage();
     const bool night = isNight();
-    const std::string& name = pet.name();
+    const std::string& name = current.name();
 
     if (refuses(action)) {
         outcome.refused = true;
@@ -31,34 +31,34 @@ Outcome Session::perform(Action action) {
         outcome.message = name + " ignores you and does something else entirely.";
         StatChange sulk;
         sulk.boredom = -4;
-        pet.apply(sulk);
+        current.apply(sulk);
     } else {
         switch (action) {
             case Action::Feed: {
-                const bool full = pet.stats().hunger < 10;
-                pet.feed();
+                const bool full = current.stats().hunger < 10;
+                current.feed();
                 outcome.animation = Animation::Eat;
                 outcome.message = full ? name + " was already full and feels a bit queasy."
                                        : name + " enjoys a balanced meal.";
                 break;
             }
             case Action::Rest:
-                pet.rest(night);
+                current.rest(night);
                 outcome.animation = Animation::Sleep;
                 outcome.message = night ? name + " sleeps soundly through the night hour."
                                         : name + " takes a restful nap.";
                 break;
             case Action::Play:
-                pet.play();
+                current.play();
                 outcome.animation = Animation::Play;
                 outcome.message = "Playtime! " + name + " is in high spirits.";
                 break;
             case Action::Special1:
             case Action::Special2: {
                 const std::size_t index = action == Action::Special1 ? 0 : 1;
-                pet.performSpecial(index);
+                current.performSpecial(index);
                 outcome.animation = Animation::Special;
-                outcome.message = Pet::fill(pet.specialActions()[index].message, name);
+                outcome.message = Pet::fill(current.specialActions()[index].message, name);
                 break;
             }
             case Action::Wait:
@@ -67,29 +67,29 @@ Outcome Session::perform(Action action) {
         }
     }
 
-    pet.advanceHour(night);
+    current.advanceHour(night);
 
     std::uniform_real_distribution<double> chance(0.0, 1.0);
-    const std::vector<PetEvent> events = pet.events();
+    const std::vector<PetEvent> events = current.events();
     if (!events.empty() && chance(rng_) < eventChance) {
         std::uniform_int_distribution<std::size_t> pick(0, events.size() - 1);
         const PetEvent& event = events[pick(rng_)];
-        pet.apply(event.change);
+        current.apply(event.change);
         outcome.event = Pet::fill(event.text, name);
         if (outcome.animation == Animation::None) {
             outcome.animation = Animation::Event;
         }
     }
 
-    outcome.after = pet.stats();
-    outcome.stageChanged = pet.stage() != stageBefore;
+    outcome.after = current.stats();
+    outcome.stageChanged = current.stage() != stageBefore;
 
     note(outcome.message);
     if (!outcome.event.empty()) {
         note(outcome.event);
     }
     if (outcome.stageChanged) {
-        note(name + " has grown into a " + stageName(pet.stage()) + "!");
+        note(name + " has grown into a " + stageName(current.stage()) + "!");
     }
     return outcome;
 }

@@ -50,7 +50,7 @@ public:
     static constexpr int hatchlingHours = 24;
     static constexpr int juvenileHours = 72;
 
-    explicit Pet(std::string name);
+    explicit Pet(std::string petName);
     virtual ~Pet() = default;
 
     // Species identity and abilities.
@@ -78,7 +78,7 @@ public:
     LifeStage stage() const;
 
     // Persistence helpers for SaveFile.
-    void restore(const std::string& name, const Stats& stats, int ageHours, int bond);
+    void restore(const std::string& newName, const Stats& newStats, int newAgeHours, int newBond);
 
     static int clampStat(int value);
     static std::string fill(const std::string& text, const std::string& name);

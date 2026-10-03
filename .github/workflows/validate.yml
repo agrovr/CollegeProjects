@@ -61,7 +61,12 @@ jobs:
         shell: bash
         run: |
           cmake -S "Virtual Pet Simulator" -B build/pet -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
-          cmake --build build/pet --config Release
+          # Compiler diagnostics become annotations, so they show on the pull request.
+          if ! cmake --build build/pet --config Release > build-pet.log 2>&1; then
+            cat build-pet.log
+            grep -E "(error|warning) [A-Z]*[0-9]+|error:|warning:" build-pet.log | sort -u | head -25 | sed 's/^/::error title=Build::/'
+            exit 1
+          fi
           ctest --test-dir build/pet -C Release --output-on-failure
 
   python:

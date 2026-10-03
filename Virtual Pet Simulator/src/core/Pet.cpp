@@ -5,7 +5,7 @@
 
 namespace vpet {
 
-Pet::Pet(std::string name) : name_(std::move(name)) {}
+Pet::Pet(std::string petName) : name_(std::move(petName)) {}
 
 StatChange Pet::feed() {
     StatChange change;
@@ -117,11 +117,11 @@ LifeStage Pet::stage() const {
     return LifeStage::Adult;
 }
 
-void Pet::restore(const std::string& name, const Stats& stats, int ageHours, int bond) {
-    name_ = name;
-    stats_ = stats;
-    ageHours_ = std::max(0, ageHours);
-    bond_ = std::clamp(bond, 0, 100);
+void Pet::restore(const std::string& newName, const Stats& newStats, int newAgeHours, int newBond) {
+    name_ = newName;
+    stats_ = newStats;
+    ageHours_ = std::max(0, newAgeHours);
+    bond_ = std::clamp(newBond, 0, 100);
 }
 
 int Pet::clampStat(int value) {

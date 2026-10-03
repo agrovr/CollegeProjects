@@ -18,13 +18,12 @@ namespace {
 
 int failures = 0;
 
-#define CHECK(condition)                                                                   \
-    do {                                                                                   \
-        if (!(condition)) {                                                                \
-            ++failures;                                                                    \
-            std::cerr << "  FAILED " << __FILE__ << ":" << __LINE__ << "  " #condition "\n"; \
-        }                                                                                  \
-    } while (false)
+void fail(const char* file, int line, const char* condition) {
+    ++failures;
+    std::cerr << "  FAILED " << file << ":" << line << "  " << condition << "\n";
+}
+
+#define CHECK(condition) ((condition) ? (void)0 : fail(__FILE__, __LINE__, #condition))
 
 std::unique_ptr<Pet> dragon(const std::string& name = "Ember") {
     return makePet("Dragon", name);

@@ -33,7 +33,7 @@ public:
     static constexpr int startHour = 8;
     static constexpr std::size_t logSize = 6;
 
-    Session(std::unique_ptr<Pet> pet, std::uint32_t seed);
+    Session(std::unique_ptr<Pet> petToPlay, std::uint32_t seed);
 
     Outcome perform(Action action);
 
